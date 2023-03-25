@@ -12,7 +12,7 @@ const Login = () => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        navigate('/home');
+        navigate('/');
 
     };
     
@@ -20,7 +20,7 @@ const Login = () => {
             <div className="login">
                 <div className="login-form-container">
                     <img src = {logo} alt="logo" className="logo"/>
-                    <form className="login-form" onSubmit={handleSubmit}>
+                    <form className="login-form" onSubmit={handleSubmit} method="POST">
                         <input type="text" value={userName} placeholder="Username" onChange={e => setUserName(e.target.value)} />
                         <input type="password" value={password} placeholder="Password" onChange={e => setPassword(e.target.value)} />
                         <button type="submit">Login</button>
