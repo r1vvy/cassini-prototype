@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { MapContainer, TileLayer, FeatureGroup, Polygon, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, FeatureGroup, Polygon, useMap, Marker, Popup } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+import L from 'leaflet';
 
 import "./MapComponent.css";
 import "leaflet/dist/leaflet.css";
@@ -10,15 +11,18 @@ import "leaflet-draw/dist/leaflet.draw";
 import "leaflet-geosearch/assets/css/leaflet.css";	
 import "leaflet-geosearch/dist/geosearch.css";
 
-const provider = new OpenStreetMapProvider();
-const searchControl = new GeoSearchControl({
-  provider: provider,
-  autoComplete: true,
-  searchLabel: 'Enter address, city or country',
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+    iconUrl: require('leaflet/dist/images/marker-icon.png'),
+    shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
+const provider = new OpenStreetMapProvider();
+
 function MapComponent() {
-  const [position, setPosition] = useState([51.505, -0.09]);
+  const [position] = useState([51.505, -0.09]);
   const [polygons, setPolygons] = useState([]);
 
   function handleSetPolygons(e) {
