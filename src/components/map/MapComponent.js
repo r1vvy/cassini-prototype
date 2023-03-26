@@ -24,11 +24,17 @@ const provider = new OpenStreetMapProvider();
 function MapComponent() {
   const [position] = useState([56.5087919, 21.0104024]);
   const [polygons, setPolygons] = useState([]);
+  const [popupOpen, setPopupOpen] = useState(false);
 
   function handleSetPolygons(e) {
-    setPolygons([...polygons, e.layer.getLatLngs()]);
+    const latLngs = e.layer.getLatLngs();
+    const coordinates = latLngs[0].map(coord => `(Lat: ${coord.lat.toFixed(6)}, Lng: ${coord.lng.toFixed(6)})`);
+    const popupContent = `<b>Polygon Coordinates:</b><br>${coordinates.join('<br>')}`
+      .replace(/"/g, '');
+    e.layer.bindPopup(popupContent).openPopup();
+    setPolygons([...polygons, latLngs]);
   }
-
+  
   function AddSearchControlToMap() {
     const map = useMap();
     useEffect(() => {
@@ -51,7 +57,20 @@ function MapComponent() {
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <FeatureGroup>
         {polygons.map((polygon, index) => (
-          <Polygon key={index} positions={polygon} />
+          <Polygon
+            key={index}
+            positions={polygon}
+            eventHandlers={{
+              mouseover: () => {
+                setPopupOpen(true);
+              },
+              mouseout: () => {
+                setPopupOpen(false);
+              },
+            }}
+            popupOpen={popupOpen}
+            popupContent={`Polygon ${index}`}
+          />
         ))}
         <EditControl
           position="topleft"
