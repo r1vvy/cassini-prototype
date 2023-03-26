@@ -1,0 +1,29 @@
+.nav {
+    background-color: #063F20;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    
+    align-items: center;
+    width: 100%;
+    position: sticky;
+    top: 0px;
+  }
+
+.navbar-nav > ul {
+    display: flex; 
+    justify-content: space-between;
+}
+
+.navbar-nav > ul > li {
+    list-style: none;
+    margin: 0 10px;
+    text-decoration:
+}
+
+.navbar-nav > ul > li > a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    
+}

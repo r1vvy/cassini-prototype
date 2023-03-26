@@ -22,7 +22,7 @@ L.Icon.Default.mergeOptions({
 const provider = new OpenStreetMapProvider();
 
 function MapComponent() {
-  const [position] = useState([51.505, -0.09]);
+  const [position] = useState([56.5087919, 21.0104024]);
   const [polygons, setPolygons] = useState([]);
 
   function handleSetPolygons(e) {
