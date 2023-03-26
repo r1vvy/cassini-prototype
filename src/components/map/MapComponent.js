@@ -28,8 +28,8 @@ function MapComponent() {
 
   function handleSetPolygons(e) {
     const latLngs = e.layer.getLatLngs();
-    const coordinates = latLngs[0].map(coord => `(Lat: ${coord.lat.toFixed(6)}, Lng: ${coord.lng.toFixed(6)})`);
-    const popupContent = `<b>Polygon Coordinates:</b><br>${coordinates.join('<br>')}`
+    const coordinates = latLngs[0].map(coord => `(Lat: ${coord.lat.toFixed(6)}, Lng: ${coord.lng.toFixed(6)}) <br>`);
+    const popupContent = `<b>Polygon Coordinates:</b><br>${coordinates.join('')}`
       .replace(/"/g, '');
     e.layer.bindPopup(popupContent).openPopup();
     setPolygons([...polygons, latLngs]);
