@@ -31,31 +31,32 @@
     justify-content: center;
     align-items: center;
 }
-  
-input {
+
+.login-form-container > img {
+    margin-bottom: -60px;
+}
+
+
+.login-form input {
     margin: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
   
-button {
+.btnLogin {
     margin: 10px;
     padding: 10px;
     width: 150px;
-    background-color: #008CBA;
+    background-color: #063F20;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.logo {
-    margin-bottom: -60px;
-}
-  
-button:hover {
-    background-color: #005b8a;
+.btnLogin:hover {
+    background-color: #063F20;
 }
 
 
